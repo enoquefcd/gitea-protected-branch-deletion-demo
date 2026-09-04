@@ -1,0 +1,23 @@
+services:
+  gitea:
+    image: docker.io/gitea/gitea:latest
+    entrypoint: ["/workspace/gitea"]
+    command: ["--work-path", "/workspace", "--config", "/demo/config/app.ini", "web"]
+    ports:
+      - "3000:3000"
+    volumes:
+      - "${GITEA_SOURCE_DIR:?Set GITEA_SOURCE_DIR in .env}:/workspace:ro"
+      - ".:/demo:ro"
+      - "gitea-data:/data"
+    cpus: 2.0
+    mem_limit: 1g
+    pids_limit: 256
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O - http://127.0.0.1:3000/api/healthz >/dev/null || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+
+volumes:
+  gitea-data:
