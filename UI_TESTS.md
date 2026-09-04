@@ -10,8 +10,11 @@ Run `./scripts/build.sh` once, then `./scripts/bootstrap.sh`. Open
 3. Under **Branch Deletion**, verify these three mutually exclusive choices:
    **Disable Branch Deletion**, **Enable Branch Deletion**, and
    **Allowlist Restricted Branch Deletion**.
-4. Select the allowlist choice and verify both user and team selectors appear.
+4. Select the allowlist choice and verify the user and team selectors and the
+   deploy-key checkbox appear.
 5. Verify `release-managers` is selected under **Allowlisted teams for deleting**.
+6. Verify **Allowlist deploy keys with push access to delete** is unchecked by
+   default.
 
 Expected appearance:
 
@@ -37,3 +40,5 @@ Expected appearance:
 
 Run `./scripts/bootstrap.sh` at any point to recreate deleted demo branches.
 Run `./scripts/smoke-api.sh` to exercise the same allow/deny paths without the UI.
+Run `./scripts/test-gitea.sh` to exercise the Gitea API and SSH deploy-key
+integration tests against the configured source checkout.

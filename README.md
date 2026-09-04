@@ -26,6 +26,7 @@ cp .env.example .env
 ./scripts/build.sh
 ./scripts/bootstrap.sh
 ./scripts/smoke-api.sh
+./scripts/test-gitea.sh
 ```
 
 Then open <http://localhost:3000>. The bootstrap output prints the three local
@@ -45,6 +46,11 @@ The source build is deliberately low-impact by default: two build workers, a
 
 The harness is supporting evidence for manual reproduction. The authoritative
 regression coverage lives in the Gitea test suite in the implementation PR.
+`scripts/test-gitea.sh` runs its branch-protection API scenarios and the real
+SSH deploy-key scenarios with the same low-resource defaults. Those verify that
+unrestricted deletion permits a deploy key with push access, restricted
+deletion denies it by default, and both the push and deletion allowlists are
+required when restrictions are enabled.
 
 ## Reset and stop
 
