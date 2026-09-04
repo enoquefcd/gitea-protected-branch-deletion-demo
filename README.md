@@ -6,7 +6,7 @@ It runs a locally built Gitea checkout, creates an organization repository, and
 configures `release/*` so only members of `release-managers` may delete matching
 branches.
 
-![Protected branch deletion team allowlist](docs/protected-branch-deletion.png)
+![Protected branch deletion allowlists](docs/protected-branch-deletion.png)
 
 ## Quick start
 
